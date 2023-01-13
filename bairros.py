@@ -31,22 +31,10 @@ for i in bairros_chave["chave"]:
 
 conexao.close()
 bairros_chave["Auto de Infração"] = auto_infracao
-import geojsonio
-contents = open('bairros_arapiraca.geojson').read()
+
 
 map = folium.Map(location=[-9.751969332753832, -36.656550027706835], zoom_start=12,  tiles='OpenStreetMap')
 
-folium.Choropleth(
-    geo_data = geojson,
-    name="choropleth",
-    data = bairros_chave,
-    columns=["Bairro", "Auto de Infração"],
-    key_on = 'geojson.Bairro',
-    fill_color="YlGn",
-    fill_opacity=0.7,
-    line_opacity=0.2,
-    legend_name="Auto de Infração",
-).add_to(map)
 
 map.save("map.html")
 #webbrowser.open("map.html")
