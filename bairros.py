@@ -1,11 +1,12 @@
 import json
 import psycopg2
 import folium
+from folium.plugins import StripePattern
 import webbrowser
 import pandas as pd
 import jellyfish as jf
 import string
-import geopandas
+import geopandas as gpd
 import webbrowser
 
 
@@ -31,10 +32,17 @@ for i in bairros_chave["chave"]:
 
 conexao.close()
 bairros_chave["Auto de Infração"] = auto_infracao
+print(bairros_chave.columns)
+geoJSON = gpd.read_file('C:/Users/EquipeDev/Desktop/faus_holiday/produtividade/fiscal_digital/bairros_arapiraca.geojson')
+print(bairros_chave.colulmns)
+print(geoJSON.columns)
 
 
 map = folium.Map(location=[-9.751969332753832, -36.656550027706835], zoom_start=12,  tiles='OpenStreetMap')
 
 
+
+
+
 map.save("map.html")
-#webbrowser.open("map.html")
+webbrowser.open("map.html")
