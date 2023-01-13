@@ -14,3 +14,4 @@ plt.yticks(fontsize = 8)
 plt.xlabel("Quantidade de termos")
 plt.title('Quantidade de processos por tipo - 2022')
 plt.show()
+
