@@ -34,7 +34,7 @@ bairros_chave["Auto de Infração"] = auto_infracao
 
 
 map = folium.Map(location=[-9.751969332753832, -36.656550027706835], zoom_start=12,  tiles='OpenStreetMap')
-
+'''
 folium.Choropleth(
     geo_data = geo_bairros,
     name="choropleth",
@@ -45,7 +45,7 @@ folium.Choropleth(
     fill_opacity=0.7,
     line_opacity=0.2,
     legend_name="Auto de Infração",
-).add_to(map)
+).add_to(map)'''
 
 map.save("map.html")
 #webbrowser.open("map.html")
