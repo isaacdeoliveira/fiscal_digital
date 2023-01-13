@@ -7,8 +7,7 @@ import jellyfish as jf
 import string
 import geopandas
 import webbrowser
-from pandas_geojson import to_geojson
-from pandas_geojson import read_geojson, filter_geojson
+
 
 conexao = psycopg2.connect(host='faus.arapiraca.al.gov.br', port = '5432', database='db_faus',
 user='fiscal', password='db#f1sc@l@R@19')
@@ -32,10 +31,10 @@ for i in bairros_chave["chave"]:
 
 conexao.close()
 bairros_chave["Auto de Infração"] = auto_infracao
-geo_bairros = read_geojson("bairros_arapiraca.geojson")
+
 
 map = folium.Map(location=[-9.751969332753832, -36.656550027706835], zoom_start=12,  tiles='OpenStreetMap')
-'''
+
 folium.Choropleth(
     geo_data = geo_bairros,
     name="choropleth",
@@ -47,7 +46,6 @@ folium.Choropleth(
     line_opacity=0.2,
     legend_name="Auto de Infração",
 ).add_to(map)
- '''
 
 map.save("map.html")
 #webbrowser.open("map.html")
