@@ -107,11 +107,24 @@ nan_fill_color = "White"
 map_notificacao.save("map_notificacao.html")
 webbrowser.open("map_notificacao.html")
 ############################# Embargo ###############################################################################
-print(geoJSON.columns)
-geoJSON
-
+sql_embargo = 'SELECT numero_processo_termo_embargo, data_lavratural_termo_embargo, latitude, longitude FROM public.termo_embargo'
+cursor.execute(sql_embargo)
+conexao.commit()
+embargos = cursor.fetchall()
+df_embargos = pd.DataFrame(embargos, columns=["Processos", "Data", "latitude", "longitude"])
+print(df_embargos)
+df_embargos.to_excel('df_embargos.xlsx',sheet_name='dados')
+map_embargo = map_auto
+for i in embargos:
+    if i[2] !='':
+        #print([float(i[2]), float(i[3])])
+        folium.Marker(
+                        location=[float(i[2]), float(i[3])],
+                        popup = str(i[0]),
+                        icon=folium.Icon(color="red", icon="info-sign"),
+                      ).add_to(map_embargo)
+map_embargo.save("map_embargo.html")
+webbrowser.open("map_embargo.html")
 ############################# Interdição #############################################################################
 
 conexao.close()
-
-
