@@ -12,6 +12,7 @@ import webbrowser
 
 conexao = psycopg2.connect(host='faus.arapiraca.al.gov.br', port = '5432', database='db_faus',
 user='fiscal', password='db#f1sc@l@R@19')
+
 cursor = conexao.cursor()  
 bairros_chave = pd.read_csv("C:/Users/EquipeDev/Documents/bairros_chaves.csv", encoding='latin1')
 geoJSON = gpd.read_file('C:/Users/EquipeDev/Desktop/faus_holiday/produtividade/fiscal_digital/bairros_arapiraca.geojson')
@@ -102,8 +103,6 @@ overlay=True,
 nan_fill_color = "White"
 ).add_to(map_notificacao)
 
-
-
 map_notificacao.save("map_notificacao.html")
 webbrowser.open("map_notificacao.html")
 ############################# Embargo ###############################################################################
@@ -117,12 +116,15 @@ df_embargos.to_excel('df_embargos.xlsx',sheet_name='dados')
 map_embargo = map_auto
 for i in embargos:
     if i[2] !='':
-        #print([float(i[2]), float(i[3])])
+        
+
         folium.Marker(
                         location=[float(i[2]), float(i[3])],
                         popup = str(i[0]),
                         icon=folium.Icon(color="red", icon="info-sign"),
                       ).add_to(map_embargo)
+
+        
 map_embargo.save("map_embargo.html")
 webbrowser.open("map_embargo.html")
 ############################# Interdição #############################################################################
